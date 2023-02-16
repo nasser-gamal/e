@@ -6,6 +6,7 @@ const createTodo = async (req, res) => {
     console.log("content", content);
     const todo = new Todo({
       content,
+      userId: req.userId.id,
     });
     todo.save();
     return res.status(200).json({ message: "Your Data Succesfully Saved" });

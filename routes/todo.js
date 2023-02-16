@@ -5,6 +5,6 @@ const isAuth = require("../middleware/is-auth");
 
 
 router.post("/create", isAuth, createTodo);
-router.get("/getAll", isAuth, getTodo);
+router.get("/getAll/:id", isAuth, getTodo);
 
 module.exports = router;
