@@ -3,13 +3,14 @@ const Todo = require("../models/todo");
 const createTodo = async (req, res) => {
   try {
     const { content } = req.body;
-    const todo = await new Todo({
+    console.log("content", content);
+    const todo = new Todo({
       content,
     });
     todo.save();
     return res.status(200).json({ message: "Your Data Succesfully Saved" });
   } catch (err) {
-    console.log(err)
+    console.log(err);
     return res.status(500).json(err);
   }
 };

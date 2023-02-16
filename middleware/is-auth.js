@@ -1,9 +1,9 @@
 const jwt = require("jsonwebtoken");
 
-const isAuth = async (req, res, next) => {
+const isAuth = (req, res, next) => {
   try {
-    const authorization = await req.headers.authorization;
-    
+    const authorization = req.headers.authorization;
+
     if (!authorization) {
       return res.status(401).json({ errorMessage: "invalid token" });
     }
@@ -16,7 +16,7 @@ const isAuth = async (req, res, next) => {
     req.userId = decodeToken.id;
     next();
   } catch (err) {
-    console.log(err)
+    console.log(err);
     return res.status(500).json(err);
   }
 };

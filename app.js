@@ -14,8 +14,9 @@ const uri =
   "mongodb+srv://nasser:74neverforget@cluster0.vhixoru.mongodb.net/shop?retryWrites=true&w=majority";
 
 app.use(express.json());
-app.use("uploads", express.static("uploads"));
+app.use(express.urlencoded({ extended: true }));
 app.use(cors());
+app.use("uploads", express.static("uploads"));
 
 app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
