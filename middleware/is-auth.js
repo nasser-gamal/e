@@ -1,8 +1,8 @@
 const jwt = require("jsonwebtoken");
 
-const isAuth = (req, res, next) => {
+const isAuth = async (req, res, next) => {
   try {
-    const authorization = req.headers.authorization;
+    const authorization = await req.headers.authorization;
     
     if (!authorization) {
       return res.status(401).json({ errorMessage: "invalid token" });
