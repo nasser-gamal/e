@@ -4,9 +4,10 @@ const createTodo = async (req, res) => {
   try {
     const { content } = req.body;
     console.log("content", content);
+    console.log(req.userId)
     const todo = new Todo({
       content,
-      userId: req.userId.id,
+      userId: req.userId,
     });
     todo.save();
     return res.status(200).json({ message: "Your Data Succesfully Saved" });
