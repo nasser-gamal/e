@@ -2,18 +2,10 @@ const jwt = require("jsonwebtoken");
 
 const isAuth = (req, res, next) => {
   try {
-    const authorization = req.headers.authorization;
-    
-    if (!authorization) {
-      return res.status(401).json({ errorMessage: "invalid token" });
-    }
-    const token = authorization.split(" ")[1];
-    const decodeToken = jwt.verify(token, "SECRETTOKEN");
-
-    if (!decodeToken) {
-      return res.status(401).json({ errorMessage: "invalid token" });
-    }
-    req.userId = decodeToken.id;
+    const token = req.headers.authorization.split(" ")[1];
+    const decodedToken = jwt.verify(token, "SECRETTOKEN");
+    const userId = decodedToken.id;
+    req.userId = userId;
     next();
   } catch (err) {
     console.log(err)
