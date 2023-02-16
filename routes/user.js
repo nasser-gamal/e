@@ -16,7 +16,6 @@ router.post(
     //   .trim()
     //   .notEmpty()
     //   .withMessage("lastName Is a Required Field"),
-    body("email").isEmail().withMessage("Email Not Valid"),
     body("password")
       .notEmpty()
       .withMessage("Password Is a Required Field")
@@ -30,7 +29,6 @@ router.post(
 router.post(
   "/login",
   [
-    body("email").isEmail().withMessage("Email Not Valid"),
     body("password")
       .notEmpty()
       .withMessage("Password Is a Required Field")
