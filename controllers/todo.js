@@ -18,7 +18,8 @@ const createTodo = async (req, res) => {
 
 const getTodo = async (req, res) => {
   try {
-    const todo = await Todo.find();
+    const id = req.params.id;
+    const todo = await Todo.find({ userId: id });
     return res.status(200).json(todo);
   } catch (err) {
     return res.status(500).json(err);
