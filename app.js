@@ -2,16 +2,15 @@ const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
 const app = express();
-
-const PORT = 4000;
+require("dotenv").config();
+const PORT = process.env.PORT || 4000;
 
 // const postRoutes = require("./routes/post");
 const todoRoutes = require("./routes/todo");
 const userRoutes = require("./routes/user");
 const User = require("./models/user");
 
-const uri =
-  "mongodb+srv://nasser:74neverforget@cluster0.vhixoru.mongodb.net/shop?retryWrites=true&w=majority";
+const uri = `mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASSWORD}@cluster0.vhixoru.mongodb.net/${process.env.MONGO_DATABASE}?retryWrites=true&w=majority`;
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -32,6 +31,7 @@ app.use((req, res, next) => {
 // app.use("/post", postRoutes);
 app.use("/auth", userRoutes);
 app.use("/todo", todoRoutes);
+
 
 mongoose
   .connect(uri)
